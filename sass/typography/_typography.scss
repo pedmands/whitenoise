@@ -1,14 +1,20 @@
+@import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,400italic,700,700italic|Merriweather:400,400italic,700,700italic);
+
 body,
 button,
 input,
 select,
 textarea {
-	color: $color__text-main;
-	font-family: $font__main;
-	@include font-size(1);
-	line-height: $font__line-height-body;
+	color: #000;
+	font-family: 'Merriweather', serif;
+	font-size: 16px;
+	font-size: 1rem;
+	line-height: 1.5;
 }
-
+.site-content {
+	font-size: 1.125em;
+	line-height: 1.6em;
+}
 @import "headings";
 
 @import "copy";
