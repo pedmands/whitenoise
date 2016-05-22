@@ -12,14 +12,7 @@ body {
 	background: $color__background-body; /* Fallback for when there is no custom background color defined. */
 }
 
-blockquote, q {
-	quotes: "" "";
-
-	&:before,
-	&:after {
-		content: "";
-	}
-}
+@import "blockquotes";
 
 hr {
 	background-color: $color__background-hr;
@@ -36,3 +29,4 @@ img {
 }
 
 @import "tables";
+

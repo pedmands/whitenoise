@@ -41,9 +41,6 @@ template {
 	display: none;
 }
 
-a {
-	background-color: transparent;
-}
 
 a:active,
 a:hover {
@@ -102,7 +99,7 @@ svg:not(:root) {
 }
 
 figure {
-	margin: 1em 40px;
+	margin: 0;
 }
 
 hr {
@@ -202,9 +199,11 @@ optgroup {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+	border: 1 px solid #999;
 }
 
 td,
 th {
-	padding: 0;
+	padding: 0.5em;
+	border: 1px solid #999;
 }

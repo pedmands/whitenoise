@@ -1,0 +1,13 @@
+blockquote {
+	position: relative;
+	font-size: 1.5em;
+	line-height: 1.4em;
+	margin: 1.5em 0 1.5em 2em;
+	&::before {
+		position: absolute;
+		left: -2em;
+		color: #dddddd;
+		font-family: 'FontAwesome';
+		content: '\f10d';
+	}
+}

@@ -1,13 +1,11 @@
 a {
-	color: $color__link;
-
+	color: #000;
+	background-color: transparent;
 	&:visited {
-		color: $color__link-visited;
+		color: #000;
 	}
-	&:hover,
-	&:focus,
-	&:active {
-		color: $color__link-hover;
+	&:hover, &:focus, &:active {
+		color: #000;
 	}
 	&:focus {
 		outline: thin dotted;
