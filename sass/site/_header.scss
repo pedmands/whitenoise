@@ -1,8 +1,9 @@
 .site-header {
 	background-color: #000;
 	background-size: cover;
-	min-height: 4em;
-	
+	@media screen and (min-width: 50em) {
+		min-height: 4em;
+	}
 }
 .site-logo {
 	position: relative;
@@ -18,7 +19,9 @@
 		border: 2px solid #fff;
 		color: #fff;
 		text-decoration: none;
-		&:hover, &:focus {
+		overflow: hidden;
+		&:hover, 
+		&:focus {
 			outline: 2px solid #fff;
 			.site-firstletter {
 				background: #fff;

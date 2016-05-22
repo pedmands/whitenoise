@@ -111,13 +111,11 @@
 /*** Mobile menu ***/
 .main-navigation.toggled {
 	position: fixed;
-	bottom: 0;
+	bottom: 3em;
 	padding: 1em;
 	z-index: 1;
 }
 .nav-menu {
-	
-	margin-bottom: 3em;
 	background-color: #000;
 }
 .main-navigation.toggled ul {
