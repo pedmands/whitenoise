@@ -277,8 +277,10 @@
 	padding: 0 .4em;
 }
 
-// Post navigation
-.post-navigation {
+// Other Navigation
+
+.post-navigation,
+.comment-navigation {
 	padding: 2em 0;
 	font-family: 'Fira Sans', sans-serif;
 	text-align: left;
@@ -322,7 +324,8 @@
 		align-items: stretch;
 		padding: 0;
 	}
-	.post-navigation {
+	.post-navigation, 
+	.comment-navigation {
 		.nav-previous {
 			display: flex;
 			align-items: stretch;
@@ -336,8 +339,8 @@
 			text-align: right;
 			width: 48%;
 		}
-		.nav-previous {
-			padding-bottom: 0;
-		}
 	}// .post-navigation
+	.nav-previous {
+			padding-bottom: 0;
+	}
 }// @media 30em
