@@ -116,7 +116,13 @@ add_action( 'widgets_init', 'whitenoise_widgets_init' );
 function whitenoise_scripts() {
 	wp_enqueue_style( 'whitenoise-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'whitenoise-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	wp_enqueue_style('whitenoise-fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
+
+	wp_enqueue_script( 'whitenoise-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery'), '20151215', true );
+	wp_localize_script( 'whitenoise-navigation', 'screenReaderText', array(
+		'expand'   => '<span class="screen-reader-text">' . __( 'expand child menu', 'whitenoise' ) . '</span>',
+		'collapse' => '<span class="screen-reader-text">' . __( 'collapse child menu', 'whitenoise' ) . '</span>',
+	) );
 
 	wp_enqueue_script( 'whitenoise-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
