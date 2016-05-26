@@ -2,6 +2,8 @@
 	overflow-x: hidden;
 }
 
+
+
 .site-main {
 	margin: 1.4em;
 	font-size: .8em;
@@ -21,5 +23,109 @@
 	.site-main {
 		max-width: 45em;
 		margin: 1.8em auto;
+	}
+}
+
+// Rules for sidebar left and sidebar right
+@media screen and (min-width: 65em) {
+
+	//sidebar right
+	.sidebar-right {
+		.content-area {
+			float: left;
+			width: calc(100% - 306px);
+		}
+		#secondary {
+			margin: 0;
+		}
+		.site-content .widget-area {
+			float: right;
+			overflow: hidden;
+			width: 17em;
+			padding: 0 1.5em;
+			border-left: 1px solid #ededed;
+		}
+	}// .sidebar-right
+
+	//sidebar left
+	.sidebar-left {
+		.content-area {
+			float: right;
+			width: calc(100% - 306px);
+		}
+		#secondary {
+			margin: 0;
+		}
+		.site-content .widget-area {
+			float: left;
+			overflow: hidden;
+			width: 17em;
+			padding: 0 1.5em;
+			border-right: 1px solid #ededed;
+		}
+	}// .sidebar-left
+
+	/* Unified styles */
+	.sidebar-right #secondary,
+	.sidebar-left #secondary {
+		background-color: #fff;
+		padding: 1.8em 0 0;
+		margin: 0;
+	}
+	
+	.sidebar-right .widget,
+	.sidebar-left .widget {
+		padding: 0 1.8em;
+		margin-bottom: 0;
+	}
+	
+	.sidebar-right .widget::after,
+	.sidebar-left .widget::after {
+		display: block;
+		width: 33%;
+		margin: 2em auto;
+		content: "";
+		border-bottom: 1px solid #c3c3c3;
+	}
+}// media 65em
+/* Conditions for sidebar-right layout */
+@media screen and (min-width: 65em) {
+	.sidebar-right .entry-meta {
+		width: 100%;
+		width: calc(100vw - 306px);
+		left: 0;
+		margin: 0;
+	}
+}
+
+@media screen and (min-width: 70.75em) {
+	.sidebar-right .entry-meta {
+		left: calc((-100vw  66.2em) / 2);
+	}
+}
+
+/* Conditions for sidebar-left layout */
+@media screen and (min-width: 65em) {
+	.sidebar-left .entry-meta {
+		width: 100%;
+		width: calc(100vw - 306px);
+		left: 0;
+		right: 0;
+		margin: 0;
+	}
+
+}
+
+@media screen and (min-width: 70.75em) {
+	.sidebar-left .entry-meta {
+		left: calc((-100vw  66.2em) / 2);
+	}
+}
+
+@media screen and (min-width: 65em) and (max-width: 70em) {
+	.sidebar-right .entry-title,
+	.sidebar-left .entry-title {
+		padding-right: 1em;
+		padding-left: 1em;
 	}
 }

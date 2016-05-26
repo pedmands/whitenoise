@@ -61,3 +61,7 @@ img.alignleft {
 		margin: 0 auto;
 	}
 }// .feature-image
+.featured-image a:hover img,
+.featured-image a:focus img {
+	outline: dashed;
+}

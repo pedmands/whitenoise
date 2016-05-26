@@ -35,11 +35,13 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Clearings
 # Header
 # Widgets
+# Footer
 # Content
 	## Global
     ## Posts and pages
 	## Asides
 	## Comments
+	## Index
 # Infinite scroll
 # Media
 	## Captions
@@ -98,6 +100,11 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Widgets
 --------------------------------------------------------------*/
 @import "site/secondary/widgets";
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+@import "site/footer";
 
 /*--------------------------------------------------------------
 # Content

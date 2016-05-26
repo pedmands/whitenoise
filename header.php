@@ -21,7 +21,8 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="site">
+    <!-- php echo get_theme_mod( 'layout_setting', 'no-sidebar' ); <- customizer functionality, belongs in "class" of #page div. -->
+<div id="page" class="site sidebar-right">
 	<a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'whitenoise' ); ?></a>
 
 	<?php if ( get_header_image() ) { ?>

@@ -77,6 +77,11 @@ function whitenoise_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
+        
+        // Add styles into backend editor
+        add_editor_style(array(
+           'inc/editor-style.css', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'
+        ));
 }
 endif;
 add_action( 'after_setup_theme', 'whitenoise_setup' );

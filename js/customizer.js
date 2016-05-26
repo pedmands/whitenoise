@@ -39,4 +39,22 @@
 			}
 		} );
 	} );
+        
+       // Custom Header Background Color
+	wp.customize( 'header_color', function( value ) {
+		value.bind( function( to ) {
+			$( '.site-header' ).css( {
+				'background-color': to
+			});
+		} );
+	} );
+        
+        // Custom Layout Options
+	wp.customize( 'layout_setting', function( value ) {
+		value.bind( function( to ) {
+			$( '#page' ).removeClass( 'no-sidebar sidebar-left sidebar-right' );
+			$( '#page' ).addClass( to );
+		} );
+	} );
+
 } )( jQuery );

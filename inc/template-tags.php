@@ -55,6 +55,50 @@ function whitenoise_posted_on() {
 }
 endif;
 
+if ( ! function_exists( 'whitenoise_index_posted_on' ) ) :
+/**
+ * Prints HTML with meta information for the current post-date/time and author.
+ */
+function whitenoise_index_posted_on() {
+	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
+	}
+
+	$time_string = sprintf( $time_string,
+		esc_attr( get_the_date( 'c' ) ),
+		esc_html( get_the_date() ),
+		esc_attr( get_the_modified_date( 'c' ) ),
+		esc_html( get_the_modified_date() )
+	);
+
+	$posted_on = sprintf(
+		esc_html_x( 'Published %s', 'post date', 'whitenoise' ),
+		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
+	);
+
+	$byline = sprintf(
+		esc_html_x( 'by %s', 'post author', 'whitenoise' ),
+		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+	);
+
+        // Display author gravatar
+        $author_id = get_the_author_meta('ID');
+       
+        echo '<div class="meta-content">';
+	echo '<span class="byline"> ' . $byline . '</span><span class="posted-on">' . $posted_on . '</span>'; // WPCS: XSS OK.
+        if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+		echo '<span class="comments-link">';
+		/* translators: %s: post title */
+		comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'whitenoise' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
+		echo '</span>';
+	}
+        echo '</div>';
+
+}
+endif;
+
+
 if ( ! function_exists( 'whitenoise_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.
@@ -190,3 +234,69 @@ function whitenoise_validate_gravatar($id_or_email) {
 		return false;
 	}
 }
+
+/**
+ * Customize the read-more excerpt
+ */
+
+function whitenoise_excerpt_more($more){
+    return " …";
+}
+add_filter('excerpt_more','whitenoise_excerpt_more');
+
+if ( ! function_exists( 'whitenoise_paging_nav' ) ) :
+/**
+ * Display navigation to next/previous set of posts when applicable.
+ *
+ * @since Twenty Fourteen 1.0
+ *
+ * @global WP_Query   $wp_query   WordPress Query object.
+ * @global WP_Rewrite $wp_rewrite WordPress Rewrite object.
+ */
+function whitenoise_paging_nav() {
+	global $wp_query, $wp_rewrite;
+
+	// Don't print empty markup if there's only one page.
+	if ( $wp_query->max_num_pages < 2 ) {
+		return;
+	}
+
+	$paged        = get_query_var( 'paged' ) ? intval( get_query_var( 'paged' ) ) : 1;
+	$pagenum_link = html_entity_decode( get_pagenum_link() );
+	$query_args   = array();
+	$url_parts    = explode( '?', $pagenum_link );
+
+	if ( isset( $url_parts[1] ) ) {
+		wp_parse_str( $url_parts[1], $query_args );
+	}
+
+	$pagenum_link = remove_query_arg( array_keys( $query_args ), $pagenum_link );
+	$pagenum_link = trailingslashit( $pagenum_link ) . '%_%';
+
+	$format  = $wp_rewrite->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
+	$format .= $wp_rewrite->using_permalinks() ? user_trailingslashit( $wp_rewrite->pagination_base . '/%#%', 'paged' ) : '?paged=%#%';
+
+	// Set up paginated links.
+	$links = paginate_links( array(
+		'base'     => $pagenum_link,
+		'format'   => $format,
+		'total'    => $wp_query->max_num_pages,
+		'current'  => $paged,
+		'mid_size' => 1,
+		'add_args' => array_map( 'urlencode', $query_args ),
+		'prev_text' => __( '<i class="fa fa-caret-left" aria-hidden="true"></i> Previous', 'whitenoise' ),
+		'next_text' => __( 'Next <i class="fa fa-caret-right" aria-hidden="true"></i>', 'whitenoise' ),
+                'type' => 'list',
+	) );
+
+	if ( $links ) :
+
+	?>
+	<nav class="navigation paging-navigation" role="navigation">
+		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'whitenoise' ); ?></h1>
+			<?php echo $links; ?>
+	</nav><!-- .navigation -->
+	<?php
+	endif;
+}
+endif;
